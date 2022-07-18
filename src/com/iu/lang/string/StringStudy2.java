@@ -91,17 +91,20 @@ public class StringStudy2 {
 		System.out.println("파일명 입력");
 		String file = sc.next();
 		int num = file.indexOf(".", 0);
+		int num2 = 0;
 		String fileName = file.substring(num+1);
 		String [] img = {"jpg", "png", "gif", "jpeg"};
+		
 		for(int i=0; i<img.length; i++) {
-		if(fileName.equals(img[i])) {
-			System.out.println("이미지 파일입니다");
-			break;
-		} else {
-			System.out.println("이미지 파일이 아닙니다");
-			break;
+			System.out.println(img[i]);
+			if(fileName.equals(img)) {
+				System.out.println("이미지");
+			} else {
+				System.out.println("파일");
+			}
+		
 		}
 		}
 	}
 	
-}
+
