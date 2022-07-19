@@ -34,10 +34,6 @@ public class WrapperEx2 {
 			jumin2[i]=jumin1;
 					}
 	}
-	String numbers = jumin.valueOf(jumin2);
-	
-	
-	
 	for(int i=0; i<jumin.length(); i++) {
 		System.out.println(jumin2[i]);
 	}
