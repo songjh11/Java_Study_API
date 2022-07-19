@@ -21,15 +21,24 @@ public class StringMain {
 //		
 //		ss.studyCharAt();
 		
-		StringStudy2 ss2 = new StringStudy2();
+//		StringStudy2 ss2 = new StringStudy2();
+//		
+		StringStudy3 ss3 = new StringStudy3();
+//		
+//		ss2.studyIndexof();
+//		
+//		ss2.studyIndexof2();
+//		
+//		ss2.studySubString();
+//		
+//		ss2.ex2();
 		
-		ss2.studyIndexof();
+		ss3.studySplit();
 		
-		ss2.studyIndexof2();
+		ss3.studySplit2();
 		
-		ss2.studySubString();
+		ss3.studySplit3();
 		
-		ss2.ex2();
 	}
 
 }
