@@ -6,7 +6,7 @@ public class WorkerService {
 	private StringBuffer sb = new StringBuffer();
 
 
-	public void WorkerService() {
+	public WorkerService() {
 		sb.append("iu-인사과-과장-0101111");
 		sb.append(", suzy-IT-대리-0102222");
 		sb.append(", choa-영업-부장-0103333");
@@ -21,18 +21,17 @@ public class WorkerService {
 		info = info.replaceAll(",", "-");
 		info = info.replaceAll(" ", "");
 		String [] info2 = info.split("-");
+		
 		WorkerDTO [] wd = new WorkerDTO [info2.length/4];
 		int j = 0;
-		for(int i=0; i<info2.length/4; i++) {
+		for(int i=0; i<info2.length; i++) {
 			WorkerDTO workerDTO = new WorkerDTO();
 			workerDTO.setName(info2[i]);
-			workerDTO.setDepartment(info2[i+1]);
-			workerDTO.setJob(info2[i+2]);
-			workerDTO.setPhone(info2[i+3]);
-			i=i+3;
-			wd[j]=workerDTO;
-			j++;
-		}	
+			workerDTO.setDepartment(info2[++i]);
+			workerDTO.setJob(info2[++i]);
+			workerDTO.setPhone(info2[++i]);
+			wd[i/4]=workerDTO;
+					}	
 		return wd;
 			}
 }

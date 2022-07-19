@@ -5,6 +5,7 @@ public class SplitMain {
 	public static void main(String[] args) {
 		WorkerService ws = new WorkerService();
 		WorkerView wv = new WorkerView();
+		
 		WorkerDTO [] workerDTO = ws.init();
 				
 		wv.view(workerDTO);
