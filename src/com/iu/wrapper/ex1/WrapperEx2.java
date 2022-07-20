@@ -2,6 +2,8 @@ package com.iu.wrapper.ex1;
 
 import java.util.Scanner;
 
+import com.iu.lang.string.StringStudy3;
+
 public class WrapperEx2 {
 	
 	//JuminCheck
@@ -20,33 +22,52 @@ public class WrapperEx2 {
 	Scanner sc = new Scanner(System.in);
 	StringBuffer sb = new StringBuffer();
 	int sum=0;
+	int count = 2;
 	
 	public void juminCheck() {
 	System.out.println("주민번호 입력");
 	String jumin = sc.next();
-	char [] jumin2 = new char [jumin.length()];
-	for(int i=0; i<jumin.length(); i++) {
-		char jumin1;
+//	String jumin = "971224-1234567";
+	
+	
+	//1. subString()->String으로 반환되기 때문에 숫자로 바로 변환
+//	String num = jumin.substring(i,i+1);
+//	int n = Integer.parseInt(num);
+
+	//2. charAt()->char->String->primitive타입으로 변환해줘야함
+//	char ch = jumin.charAt(0);
+//	int n = Integer.parseInt(ch+"");
+//	String num = String.valueOf(ch);
+//	int n = Integer.parseInt(num);
+	for(int i=0; i<jumin.length()-1; i++) {
 		if(i==6) {
 			continue;
 		} else {
-			jumin1=jumin.charAt(i);
-			jumin2[i]=jumin1;
-					}
-	}
-	for(int i=0; i<jumin.length(); i++) {
-		System.out.println(jumin2[i]);
-	}
-	for(int i=0; i<jumin.length(); i++) {
-		if(i==6) {
-			continue;
-		}
-		int j = jumin2[i];
-		System.out.println(j);
-		sum=(j*2)+sum;
+			int n = Integer.parseInt(String.valueOf(jumin.charAt(i)));
+			sum=(n*count)+sum;
+				count++;
+				if(count>9) {
+					count = count-8;
+						}
+				}
+			}
+			int check = sum%11;
+				check = 11-check;
+				if(check>9) {
+					check = check%10;
+				}
+		//check용 번호
+		int checkNum = Integer.parseInt(String.valueOf(jumin.charAt(jumin.length()-1)));
+		System.out.println(checkNum);
+		
+			if(check==checkNum) {
+				System.out.println("정상");
+			} else{
+				System.out.println("비정상");
+			}
 				}
 	}
 	
 	
 
-}
+

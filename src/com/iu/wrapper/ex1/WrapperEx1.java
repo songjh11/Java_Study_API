@@ -32,28 +32,27 @@ public class WrapperEx1 {
 	}
 	private void age(String pn) {
 		//2. 현재 나이 출력
-		String year = pn.substring(0, 2);
-		char g = pn.charAt(7);		
+		String year = pn.substring(0, 2);//년도
+		char g = pn.charAt(7);//1900,2000		
 		int year2 = Integer.parseInt(year);
-		if(g=='3'||g=='4') {
-			System.out.println("나이: "+(2022-year2));
-		} else {
+		if(g=='1'||g=='2') {
 			System.out.println("나이: "+(2022-1900-year2));
+		} else {
+			System.out.println("나이: "+(2022-2000-year2));
 		}
 		
 	}
 	
 	private void season(String pn) {
-		String month = pn.substring(2, 4);
-		int mon = Integer.parseInt(month);
-		System.out.println(mon);
+		pn= pn.substring(2, 4);
+		int mon = Integer.parseInt(pn);
 		if(3<=mon&&mon<=5) {
 			System.out.println("봄에 태어났습니다");
 		} else if(6<=mon&&mon<=8) {
 			System.out.println("여름에 태어났습니다");
 		}else if(9<=mon&&mon<=10) {
 			System.out.println("가을에 태어났습니다");
-		}else if(11<=mon||mon<=1) {
+		}else if(11<=mon||mon<=2) {
 			System.out.println("겨울에 태어났습니다");
 		}
 		
