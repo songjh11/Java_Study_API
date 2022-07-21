@@ -32,7 +32,7 @@ public class WeatherService extends CityDTO {
 		sb.append("Busan-0.5,85,태풍");
 	}
 	
-	public void init(ArrayList<CityDTO> ar) {
+	public void init(ArrayList<CityDTO> ar) {//->초기화
 		String newInfo = sb.toString();
 		newInfo = newInfo.replaceAll("-",",");
 		StringTokenizer st = new StringTokenizer(newInfo, ",");
@@ -46,7 +46,8 @@ public class WeatherService extends CityDTO {
 						}
 		System.out.println("초기화를 완료했습니다");
 					}
-	public void add(ArrayList<CityDTO> ar) {
+	
+	public boolean add(ArrayList<CityDTO> ar) {
 		CityDTO cityDTO = new CityDTO();
 		System.out.println("도시 입력");
 		cityDTO.setName(sc.next());
@@ -56,13 +57,12 @@ public class WeatherService extends CityDTO {
 		cityDTO.setHum(sc.nextInt());
 		System.out.println("상태 입력");
 		cityDTO.setStatus(sc.next());
-		ar.add(cityDTO);
+		return ar.add(cityDTO);		
 	}
 	
-	public void remove(ArrayList<CityDTO> ar) {
+	public boolean remove(ArrayList<CityDTO> ar) {
 		CityDTO cityDTO2 = new CityDTO();
-		boolean flag = true;
-		while(flag) {
+		boolean flag = false;
 		System.out.println("도시 입력");
 		String cityname = sc.next().toUpperCase();
 		for(int i=0; i<ar.size(); i++) {
@@ -70,28 +70,40 @@ public class WeatherService extends CityDTO {
 				ar.remove(ar.get(i));
 				flag=!flag;
 				break;
-				} }
-		if (flag=true) {
-					System.out.println("해당 도시가 없습니다");
-									}
-							}//while 끝
+				} 
+			}
+			return flag;}
+	
+	
+//	public void find(ArrayList<CityDTO> ar) {
+//		boolean flag = true;
+//		while(flag) {
+//		System.out.println("도시 입력");
+//		String cityname = sc.next().toUpperCase();
+//			for(int i=0; i<ar.size(); i++) {
+//				if(cityname.equals(ar.get(i).getName().toUpperCase())) {
+//				System.out.println("도시명: "+ar.get(i).getName()+"\n기온: "+ar.get(i).getGion()+"\n습도: "+ar.get(i).getHum()+"\n상태: "+ar.get(i).getStatus());
+//				flag=!flag;
+//					}
+//				}
+//			if(flag==true) {
+//				System.out.println("해당 도시가 없습니다");
+//				flag=!flag;					}
+//			}//While끝
+//	}
+	
+	public CityDTO find(ArrayList<CityDTO> ar) {
+		CityDTO cityDTO = null;
+		System.out.println("도시명 입력");
+		String name = sc.next().toUpperCase();
+		
+		//향상된 for
+		for(CityDTO c: ar) {
+			if(name.equals(c.getName().toUpperCase())) {
+				cityDTO = c;
+				break;
+			}
+		}		
+		return cityDTO;
 	}
-	
-	
-	public void find(ArrayList<CityDTO> ar) {
-		boolean flag = true;
-		while(flag) {
-		System.out.println("도시 입력");
-		String cityname = sc.next().toUpperCase();
-			for(int i=0; i<ar.size(); i++) {
-				if(cityname.equals(ar.get(i).getName().toUpperCase())) {
-				System.out.println("도시명: "+ar.get(i).getName()+"\n기온: "+ar.get(i).getGion()+"\n습도: "+ar.get(i).getHum()+"\n상태: "+ar.get(i).getStatus());
-				flag=!flag;
-					}
-				}
-			if(flag==true) {
-				System.out.println("해당 도시가 없습니다");
-				flag=!flag;					}
-			}//While끝
-	}	
 }
