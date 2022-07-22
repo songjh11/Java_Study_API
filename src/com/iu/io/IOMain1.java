@@ -12,15 +12,16 @@ public class IOMain1 {
 		 InputStream is = System.in; //byte
 		 InputStreamReader ir = new InputStreamReader(is);//한글자
 		 BufferedReader br = new BufferedReader(ir);
+		 String msg;
 		 try {
 			 System.out.println("키보드에서 입력 후 엔터");
-			String msg = br.readLine();
-			System.out.println(msg);
+			 msg = br.readLine();
+			 System.out.println(msg);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		 
+//		 System.out.println(msg);
 		 
 		 
 
