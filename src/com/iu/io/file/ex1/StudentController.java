@@ -15,6 +15,7 @@ public class StudentController {
 public void start() throws Exception {
 	Scanner sc = new Scanner(System.in);
 	StudentService ss = new StudentService();
+	StudentView sv = new StudentView();
 	ArrayList<StudentDTO> ar = new ArrayList<>();
 	boolean check = true;
 	
@@ -30,28 +31,35 @@ public void start() throws Exception {
 		
 		if(num==1) {
 			System.out.println("1. 학생 정보 출력");
-			ar = ss.getList();
-			for(int i = 0; i<ar.size(); i++) {
-				System.out.println("이   름: "+ar.get(i).getName());
-				System.out.println("번   호: "+ar.get(i).getNum());
-				System.out.println("국어점수: "+ar.get(i).getKor());
-				System.out.println("영어점수: "+ar.get(i).getEng());
-				System.out.println("수학점수: "+ar.get(i).getMath());
-				System.out.println("총   점: "+ar.get(i).getTotal());
-				System.out.println("평   균: "+ar.get(i).getAvg());
-				System.out.println("===============================");
-//				System.out.println();
-											}
-			
-			
+			sv.view(ss.getList());
+			System.out.println("===============================");
 		} else if(num==2) {
 			System.out.println("2. 학생 정보 검색");
+			StudentDTO studentDTO = ss.getStudent(ss.getList());
+			if(studentDTO==null) {
+				sv.view("해당 학생이 없습니다");
+			} else {
+			sv.view(studentDTO);}
 		} else if(num==3) {
 			System.out.println("3. 학생 정보 추가");
+			ss.setStudentAdd(ar);
+			System.out.println("학생 정보가 추가되었습니다");
 		} else if(num==4) {
 			System.out.println("4. 학생 정보 삭제");
+			int result = ss.setStudentDelete(ar);
+			if(result==1) {
+				System.out.println("학생 정보가 삭제되었습니다");
+			} else {
+				sv.view("해당 학생이 없습니다");
+			}
 		} else if(num==5) {
 			System.out.println("5. 백        업");
+				int result = ss.setList(ar);
+				if(result==1) {
+					System.out.println("백업이 완료됐습니다");
+				} else {
+					sv.view("백업에 실패했습니다");
+				}
 		} else {
 			System.out.println("6. 종        료");
 			check=!check;

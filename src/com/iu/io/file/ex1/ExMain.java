@@ -7,7 +7,6 @@ public class ExMain {
 	public static void main(String[] args) {
 
 
-		StudentDAO dao = new StudentDAO();
 		ArrayList<StudentDTO> as = new ArrayList<>();
 		StudentController   ss = new StudentController();
 		try {

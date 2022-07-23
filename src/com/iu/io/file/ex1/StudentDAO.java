@@ -4,14 +4,13 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.StringTokenizer;
 
 public class StudentDAO {
-	StudentDTO studentDTO = new StudentDTO(); 
-	File file = new File("C:\\Study","studentData.txt");
-	ArrayList<StudentDTO> ad = new ArrayList<>();
+	StudentDTO studentdto = new StudentDTO(); 
 
 	
 	//DTO: Data Transfer Object 
@@ -30,43 +29,55 @@ public class StudentDAO {
 	//	 1을 리턴: 정상적인 성공
 	//	 0을 리턴: 예외가 발생하는 경우
 	//
-	
+	public int setList(ArrayList<StudentDTO> ar) {
+		File file = new File("C:\\Study\\studentData.txt");
+		FileWriter fw;
+		int num = 0;
+		try {	fw = new FileWriter(file, true);
+				fw.write("\r\n");
+				for(int i=0; i<ar.size(); i++) {
+				fw.write(ar.get(i).getName()+","+ar.get(i).getNum()+","+ar.get(i).getKor()+","+ar.get(i).getEng()+","+ar.get(i).getMath()+"\r\n");
+				fw.flush();
+				num=1;
+				}
+			} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return num ;
+	}
 
 	
 	
 	
 	
 	public ArrayList<StudentDTO> getList() throws Exception  {
-		StudentDTO studentdto = new StudentDTO();
+		File file = new File("C:\\Study","studentData.txt");
+		ArrayList<StudentDTO> ad = new ArrayList<>();
 		FileReader fr = new FileReader(file);
 		BufferedReader br = new BufferedReader(fr);
-		String student = br.readLine();//공백
+		br.readLine();//공백제거
 		boolean check = true;
 		
-		while(check) {
-		student = br.readLine();//iu,1,56,54,85
-				if(student==null) {
+		while(check) {//while시작
+			String studentData = br.readLine();//iu,1,56,54,85
+				if(studentData==null) {
 					break;
 				}
-			StringTokenizer st = new StringTokenizer(student, ",");
-			studentdto.setName(st.nextToken());
-			studentdto.setNum(Integer.parseInt(st.nextToken()));
-			studentdto.setKor(Integer.parseInt(st.nextToken()));
-			studentdto.setEng(Integer.parseInt(st.nextToken()));
-			studentdto.setMath(Integer.parseInt(st.nextToken()));
+			StringTokenizer st = new StringTokenizer(studentData, ",");
+			while(st.hasMoreTokens()) {
+			StudentDTO studentdto = new StudentDTO();
+			studentdto.setName(st.nextToken().trim());
+			studentdto.setNum(Integer.parseInt(st.nextToken().trim()));
+			studentdto.setKor(Integer.parseInt(st.nextToken().trim()));
+			studentdto.setEng(Integer.parseInt(st.nextToken().trim()));
+			studentdto.setMath(Integer.parseInt(st.nextToken().trim()));
 			ad.add(studentdto);	
 						}
-		return ad;
-		}
-	
-		
-	public ArrayList<StudentDTO> score(ArrayList<StudentDTO> ar) {
-		for(int i=0; i<ar.size(); i++) {
-		studentDTO.setTotal(ar.get(i).getKor()+ar.get(i).getEng()+ar.get(i).getMath());
-		studentDTO.setAvg(studentDTO.getTotal()/3);
-		ar.add(studentDTO);
+		}//while끝
+			return ad;
 	}
-		return ar;
-}
+		
+	
 
 }
