@@ -64,8 +64,7 @@ public void start() throws Exception {
 			System.out.println("6. 종        료");
 			check=!check;
 		} 
-		
-		
+				
 	}
 }	
 	
