@@ -44,9 +44,8 @@ public class Client1 {
 
 		if(message.toUpperCase().equals("Q")) {
 			System.out.println("연결을 종료합니다");
-			check=!check;
 			break;
-		}
+				}
 				
 		//수신 준비
 		is = socket.getInputStream();
@@ -58,9 +57,8 @@ public class Client1 {
 		
 		if(message.toUpperCase().equals("Q")) {
 			System.out.println("연결을 종료합니다");
-			check=!check;
 			break;
-		}
+			}
 		System.out.println("Server: "+message);
 		}//while 끝
 		

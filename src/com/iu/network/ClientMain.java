@@ -7,19 +7,19 @@ public class ClientMain {
 		Client1 c1 = new Client1();
 		Client2 c2 = new Client2();
 		
-//		try {
-//			c2.getFood();
-//		} catch (Exception e1) {
-//			// TODO Auto-generated catch block
-//			e1.printStackTrace();
-//		}
-		
 		try {
-			c1.send();
-		} catch (Exception e) {
+			c2.getFood();
+		} catch (Exception e1) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			e1.printStackTrace();
 		}
+		
+//		try {
+//			c1.send();
+//		} catch (Exception e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 		System.out.println("Client Finish");
 
 	}

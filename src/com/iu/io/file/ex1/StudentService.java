@@ -5,30 +5,30 @@ import java.util.Scanner;
 
 public class StudentService implements Service {
 
-	StudentDAO dao = new StudentDAO();
-	ArrayList<StudentDTO> ar = new ArrayList<>();
+	private StudentDAO dao;
+	
+	public StudentService() {
+		this.dao = new StudentDAO();
+		
+	}
+	
 	StudentDTO studentDTO = new StudentDTO();
 	Scanner sc = new Scanner(System.in);
 	
 	@Override
 	public ArrayList<StudentDTO> getList() throws Exception {
-			ar = dao.getList();	
-			for(int i=0; i<4; i++) {
-			if(ar.get(i)!=null) {
-			StudentDTO studentDTO = ar.get(i);
-			studentDTO.setTotal(ar.get(i).getKor()+ar.get(i).getEng()+ar.get(i).getMath());
-			studentDTO.setAvg(studentDTO.getTotal()/3);
-			ar.set(i, studentDTO);
-			}else {break; }
-		}
+			ArrayList<StudentDTO> ar = dao.getList();	
+			for(StudentDTO studentDTO: ar) {
+			studentDTO.setTotal(studentDTO.getKor()+studentDTO.getEng()+studentDTO.getMath());
+			studentDTO.setAvg(studentDTO.getTotal()/3.0);
+			}
 		return ar;
-	}
+		}
 
 	@Override
 	public int setList(ArrayList<StudentDTO> ar) throws Exception {
 		//StudentDAO에서 setList를 호출하고 결과를 리턴
-		int num = dao.setList(this.getList());
-		return num;
+		return dao.setList(ar);
 	}
 	@Override
 	public StudentDTO getStudent(ArrayList<StudentDTO> ar) throws Exception {
@@ -52,36 +52,39 @@ public class StudentService implements Service {
 		//삭제가 성공하면 1을 리턴, 실패하면 0을 리턴
 		
 		System.out.println("삭제하려는 학생 번호를 입력하세요");
-		int num = 0;
+		int result = 0;
 //		ar = this.getList();
-		int select = sc.nextInt();
+		int num = sc.nextInt();
 		for(int i=0; i<ar.size(); i++) {
-			if(select==ar.get(i).getNum()) {
-				ar.remove(ar.get(i));
-				num = 1;
+			if(num==ar.get(i).getNum()) {
+				StudentDTO studentDTO = ar.remove(i);
+				if(studentDTO!=null) {
+					result = 1;
+				}
 				break;
 			}
 		} 		
-		return num;
+		return result;
 	}
 
 	@Override
 	public void setStudentAdd(ArrayList<StudentDTO> ar) throws Exception {
 		//학생의 정보를 입력받아서 학생 한명 추가
 		StudentDTO studentDTO = new StudentDTO();
-		System.out.println("학생 이름을 입력하세요");
+		System.out.println("추가할 학생 이름을 입력하세요");
 		studentDTO.setName(sc.next());
-		System.out.println("학생 번호를 입력하세요");
+		System.out.println("추가할 학생 번호를 입력하세요");
 		studentDTO.setNum(sc.nextInt());
-		System.out.println("국어 점수를 입력하세요");
+		System.out.println("추가할 국어 점수를 입력하세요");
 		studentDTO.setKor(sc.nextInt());
-		System.out.println("영어 점수를 입력하세요");
+		System.out.println("추가할 영어 점수를 입력하세요");
 		studentDTO.setEng(sc.nextInt());
-		System.out.println("수학 점수를 입력하세요");
+		System.out.println("추가할 수학 점수를 입력하세요");
 		studentDTO.setMath(sc.nextInt());
 		studentDTO.setTotal(studentDTO.getKor()+studentDTO.getEng()+studentDTO.getMath());
-		studentDTO.setAvg(studentDTO.getTotal()/3);
-		ar.add(studentDTO);
+		studentDTO.setAvg(studentDTO.getTotal()/3.0);
+//		ar.add(studentDTO);
+//		this.setList(ar);
 			}
 
 }

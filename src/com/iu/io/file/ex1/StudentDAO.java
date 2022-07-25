@@ -30,21 +30,33 @@ public class StudentDAO {
 	//	 0을 리턴: 예외가 발생하는 경우
 	//
 	public int setList(ArrayList<StudentDTO> ar) {
-		File file = new File("C:\\Study\\studentData.txt");
-		FileWriter fw;
-		int num = 0;
-		try {	fw = new FileWriter(file, true);
-				fw.write("\r\n");
-				for(int i=0; i<ar.size(); i++) {
-				fw.write(ar.get(i).getName()+","+ar.get(i).getNum()+","+ar.get(i).getKor()+","+ar.get(i).getEng()+","+ar.get(i).getMath()+"\r\n");
+		File file = new File("C:\\Study","studentData.txt");
+		FileWriter fw = null;
+		int result = 1;
+		try {	
+			fw = new FileWriter(file, true);
+			fw.write("\r\n");
+			for(StudentDTO studentDTO: ar) {
+				StringBuffer stringBuffer = new StringBuffer();
+				stringBuffer.append(studentDTO.getName());
+				stringBuffer.append(",");
+				stringBuffer.append(studentDTO.getNum());
+				stringBuffer.append(",");
+				stringBuffer.append(studentDTO.getKor());
+				stringBuffer.append(",");
+				stringBuffer.append(studentDTO.getEng());
+				stringBuffer.append(",");
+				stringBuffer.append(studentDTO.getMath());
+				stringBuffer.append("\r\n");
+				fw.write(stringBuffer.toString());
 				fw.flush();
-				num=1;
-				}
+					}
 			} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			result= 0;
 		}
-		return num ;
+		return result;
 	}
 
 	

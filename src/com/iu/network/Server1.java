@@ -41,9 +41,8 @@ public class Server1 {
 		String message = br.readLine();
 		if(message.toUpperCase().equals("Q")) {
 			System.out.println("연결을 종료합니다");
-			check=!check;
 			break;
-		}
+			}
 		
 		System.out.println("Client: "+message);
 					
@@ -58,11 +57,9 @@ public class Server1 {
 		bw.flush();
 		
 		if(message.toUpperCase().equals("Q")) {
-			System.out.println("연결을 종료합니다");
-			check=!check;
 			break;
-		}
-		}
+			}
+		}//while 끝
 		bw.close();
 		ow.close();
 		os.close();
