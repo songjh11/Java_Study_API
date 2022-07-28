@@ -84,7 +84,7 @@ public class StudentService implements Service {
 		studentDTO.setTotal(studentDTO.getKor()+studentDTO.getEng()+studentDTO.getMath());
 		studentDTO.setAvg(studentDTO.getTotal()/3.0);
 		ar.add(studentDTO);
-//		this.setList(ar);
-			}
+		this.setList(ar);
+	}
 
 }
